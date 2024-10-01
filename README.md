@@ -1,1 +1,9 @@
 "# Diplom_2" 
+Написаны автотесты на проверку API для  Stellar Burgers:
+1.Создание пользователя - test_create_new_user_success, test_create_existent_user, test_create_user_without_param
+2.Авторизация пользователя - test_login_success, test_login_with_false_login_and_password, test_login_without_email, test_login_without_password
+3.Изменение данных пользователя - test_change_user_success, test_change_user_email_already_use, test_change_user_without_auth, 
+4.Создание заказа - test_create_order_with_auth_and_ingredients, test_create_order_without_auth_and_with_ingredients, test_create_order_with_auth_and_without_ingredients, test_create_order_without_auth_and_without_ingredients, test_create_order_with_false_hash
+5.Получение заказов конкретного пользователя - test_get_user_orders_success, est_get_user_orders_without_auth
+
+Сформирован и приложен allure-отчет.
