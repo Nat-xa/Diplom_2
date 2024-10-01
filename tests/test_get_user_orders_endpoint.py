@@ -8,18 +8,12 @@ from interface_api import InterfaceApi
 class TestGetUserOrdersEndpoint:
 
     @allure.title('Проверка успешного получения списка заказов конкретного пользователя')
-    def test_get_user_orders_success(self):
-        create_body = Helper.create_valid_user_body()
-        InterfaceApi.create_user(create_body)
-        login_body = Helper.get_login_body_from_create_body(create_body)
-        login_response = InterfaceApi.login_user(login_body)
-        headers = Helper.get_auth_token_and_create_headers(login_response)
+    def test_get_user_orders_success(self, headers_after_login):
         body_1 = Helper.create_body_for_order()
-        InterfaceApi.create_order_auth(headers, body_1)
+        InterfaceApi.create_order_auth(headers_after_login, body_1)
         body_2 = Helper.create_body_for_order()
-        InterfaceApi.create_order_auth(headers, body_2)
-        response = InterfaceApi.get_user_orders_with_auth(headers)
-        InterfaceApi.delete_user(headers)
+        InterfaceApi.create_order_auth(headers_after_login, body_2)
+        response = InterfaceApi.get_user_orders_with_auth(headers_after_login)
 
         assert response.status_code == 200 and len(response.json()['orders']) == 2
 
